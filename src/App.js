@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import CalcButton from './CalcButton';
+import CalcButton from './components/CalcButton';
+import CalcOutput from './components/CalcOutput';
 import './style.css';
 
 let GLOBAL_DATA = {
@@ -10,8 +11,6 @@ let GLOBAL_DATA = {
   buffer: '',
 };
 
-function CalcOutput(props) {}
-
 function App(props) {
   const [output, setOutput] = useState('0');
   function changeOutput() {
@@ -19,8 +18,7 @@ function App(props) {
   }
   return (
     <div className="App">
-      <h1>Simple Calculator</h1>
-      <h2>{output}</h2>
+      <CalcOutput output_value={output} />
       <CalcButton
         btn_value="1"
         btn_type="digit"
@@ -66,6 +64,12 @@ function App(props) {
       <CalcButton
         btn_value="CA"
         btn_type="clear_all"
+        global_values={GLOBAL_DATA}
+        output_setter={changeOutput}
+      />
+      <CalcButton
+        btn_value="+/-"
+        btn_type="toggle_symbol"
         global_values={GLOBAL_DATA}
         output_setter={changeOutput}
       />

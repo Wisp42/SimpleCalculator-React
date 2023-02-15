@@ -57,6 +57,12 @@ function CalcButton(props) {
       props.global_values.number_2 = '';
       props.global_values.action = '';
       props.global_values.buffer = '';
+    } else if (props.btn_type == 'toggle_symbol') {
+      if (props.global_values.buffer[0] != '-') {
+        props.global_values.buffer = '-' + props.global_values.buffer;
+      } else if (props.global_values.buffer[0] == '-') {
+        props.global_values.buffer = props.global_values.buffer.slice(1);
+      }
     }
 
     props.global_values.output =
@@ -69,7 +75,7 @@ function CalcButton(props) {
     props.output_setter();
   }
   return (
-    <div className="CalcButton">
+    <div className={'CalcButton CalcButton-' + props.btn_type}>
       <input
         type="submit"
         value={props.btn_value}
