@@ -1,21 +1,22 @@
 import React from 'react';
+import '../components_styles/CalcButton.css';
 
 function CalcButton(props) {
   function checkPressButton(e) {
     e.preventDefault();
-    if (props.btn_type == 'digit') {
-      pressDigit();
+    if (props.btn_type == 'symbol') {
+      pressSymbol();
     } else if (props.btn_type == 'action') {
       pressAction();
     } else if (props.btn_type == 'return_result') {
       pressResult();
     } else if (props.btn_type == 'clear_all') {
       pressClearAll();
-    } else if (props.btn_type == 'toggle_symbol') {
-      pressToggleSymol();
+    } else if (props.btn_type == 'toggle_symbol_before') {
+      pressToggleSymolBefore();
     }
 
-    function pressDigit() {
+    function pressSymbol() {
       props.global_values.buffer += props.btn_value;
     }
     function pressAction() {
@@ -69,7 +70,7 @@ function CalcButton(props) {
       }
     }
 
-    function pressToggleSymol() {
+    function pressToggleSymolBefore() {
       if (props.global_values.buffer[0] != '-') {
         props.global_values.buffer = '-' + props.global_values.buffer;
       } else if (props.global_values.buffer[0] == '-') {
@@ -93,7 +94,12 @@ function CalcButton(props) {
   }
   return (
     <div className={'CalcButton CalcButton-' + props.btn_type}>
-      <input type="submit" value={props.btn_value} onClick={checkPressButton} />
+      <input
+        type="submit"
+        value={props.btn_value}
+        onClick={checkPressButton}
+        className="button"
+      />
     </div>
   );
 

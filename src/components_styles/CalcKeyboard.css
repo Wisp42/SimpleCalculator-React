@@ -1,0 +1,29 @@
+.CalcKeyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.top-action-bar {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.side-action-bar {
+  display: grid;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+.digit-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.bottom-symbol-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-column-start: 1;
+  grid-column-end: 5;
+}

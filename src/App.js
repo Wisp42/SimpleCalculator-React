@@ -20,17 +20,20 @@ function App(props) {
   }
   return (
     <div className="App">
-      <CalcOutput output_value={output} changeOutput={changeOutput} />
-      <CalcKeyboard global_data={GLOBAL_DATA} />
-      <CalcButton
+      <div className="container">
+        <CalcOutput output_value={output} />
+        <CalcKeyboard global_data={GLOBAL_DATA} change_output={changeOutput} />
+      </div>
+      <br></br>
+      {/* <CalcButton
         btn_value="1"
-        btn_type="digit"
+        btn_type="symbol"
         global_values={GLOBAL_DATA}
         output_setter={changeOutput}
       />
       <CalcButton
         btn_value="2"
-        btn_type="digit"
+        btn_type="symbol"
         global_values={GLOBAL_DATA}
         output_setter={changeOutput}
       />
@@ -75,7 +78,7 @@ function App(props) {
         btn_type="toggle_symbol"
         global_values={GLOBAL_DATA}
         output_setter={changeOutput}
-      />
+      /> */}
     </div>
   );
 }
