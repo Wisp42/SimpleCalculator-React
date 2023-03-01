@@ -1,11 +1,25 @@
 import React from 'react';
+import '../components_styles/CalcButton.css';
 
 function CalcButton(props) {
-  function checkActionButton(e) {
+  function checkPressButton(e) {
     e.preventDefault();
-    if (props.btn_type == 'digit') {
-      props.global_values.buffer += props.btn_value;
+    if (props.btn_type == 'symbol') {
+      pressSymbol();
     } else if (props.btn_type == 'action') {
+      pressAction();
+    } else if (props.btn_type == 'return_result') {
+      pressResult();
+    } else if (props.btn_type == 'clear_all') {
+      pressClearAll();
+    } else if (props.btn_type == 'toggle_symbol_before') {
+      pressToggleSymolBefore();
+    }
+
+    function pressSymbol() {
+      props.global_values.buffer += props.btn_value;
+    }
+    function pressAction() {
       if (props.global_values.buffer != '') {
         if (props.global_values.number_1 == '') {
           props.global_values.number_1 = props.global_values.buffer;
@@ -30,7 +44,9 @@ function CalcButton(props) {
           props.global_values.action = props.btn_value;
         }
       }
-    } else if (props.btn_type == 'return_result') {
+    }
+
+    function pressResult() {
       if (
         props.global_values.number_1 != '' &&
         props.global_values.buffer != ''
@@ -52,13 +68,21 @@ function CalcButton(props) {
         props.global_values.number_1 = '';
         props.global_values.action = '';
       }
-    } else if (props.btn_type == 'clear_all') {
+    }
+
+    function pressToggleSymolBefore() {
+      if (props.global_values.buffer[0] != '-') {
+        props.global_values.buffer = '-' + props.global_values.buffer;
+      } else if (props.global_values.buffer[0] == '-') {
+        props.global_values.buffer = props.global_values.buffer.slice(1);
+      }
+    }
+    function pressClearAll() {
       props.global_values.number_1 = '';
       props.global_values.number_2 = '';
       props.global_values.action = '';
       props.global_values.buffer = '';
     }
-
     props.global_values.output =
       props.global_values.number_1 +
       props.global_values.action +
@@ -69,11 +93,12 @@ function CalcButton(props) {
     props.output_setter();
   }
   return (
-    <div className="CalcButton">
+    <div className={'CalcButton CalcButton-' + props.btn_type}>
       <input
         type="submit"
         value={props.btn_value}
-        onClick={checkActionButton}
+        onClick={checkPressButton}
+        className="button"
       />
     </div>
   );
